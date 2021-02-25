@@ -1,3 +1,3 @@
 module.exports = function removeCommentsLoader(source) {
-    return source.replace(/<!--(.*?)-->/g, '');
-}
+  return source.replace(/<!--(.*?)-->/g, '');
+};

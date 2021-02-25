@@ -1,0 +1,61 @@
+@use "sass:color";
+
+$COLOR_HIGHLIGHT: #f65261;
+$COLOR_BACKGROUND: #232323;
+$COLOR_FONT_PRIMARY: #fff;
+$COLOR_FONT_SECONDARY: #555555;
+$COLOR_INPUT_BACKGROUND: #424242;
+
+body {
+  color: $COLOR_FONT_PRIMARY;
+  background-color: $COLOR_BACKGROUND;
+  font-family: "Maven Pro", sans-serif;
+}
+
+button {
+  border-radius: 4px;
+  letter-spacing: 0.05rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.button-dark {
+  color: $COLOR_FONT_PRIMARY;
+  background-color: $COLOR_BACKGROUND;
+  border-radius: 0;
+  height: 2rem;
+
+  &:hover {
+    background-color: $COLOR_HIGHLIGHT;
+  }
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.button-primary {
+  width: 12rem;
+  height: 3rem;
+  background-color: $COLOR_HIGHLIGHT;
+  color: $COLOR_FONT_PRIMARY;
+  font-size: 1.3rem;
+
+  &:hover {
+    background-color: color.scale($COLOR_HIGHLIGHT, $lightness: 10%);
+    cursor: pointer;
+  }
+}
+
+.button-secondary {
+  border: 1px solid $COLOR_HIGHLIGHT;
+  color: $COLOR_HIGHLIGHT;
+}

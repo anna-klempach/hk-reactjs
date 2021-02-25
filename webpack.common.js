@@ -13,7 +13,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
   devServer: {
     compress: true,
@@ -44,7 +44,17 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
       },
       {
         test: /\.(ttf|eot|svg|woff|png|jpe?g|gif)$/i,
@@ -52,7 +62,7 @@ module.exports = {
         options: {
           name: '[path][name].[ext]?[hash]'
         }
-      }
+      },
     ],
   },
   plugins: [
@@ -62,7 +72,7 @@ module.exports = {
       title: 'HK ReactJS App'
     }),
     new MiniCssExtractPlugin({
-      filename: './styles.css',
+      filename: './styles.css'
     }),
     new CleanWebpackPlugin()
   ],
