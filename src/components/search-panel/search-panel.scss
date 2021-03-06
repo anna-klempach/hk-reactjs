@@ -1,0 +1,21 @@
+@use "sass:color";
+@import "../../styles/theme.scss";
+
+.search-panel {
+  display: flex;
+
+  flex-grow: 3;
+  padding: 0 2rem;
+
+  &__input {
+    flex-grow: 1;
+    height: 3rem;
+    border-radius: 5px;
+    border: none;
+    margin-right: 1rem;
+    padding: 1rem;
+    background-color: color.change($COLOR_INPUT_BACKGROUND, $alpha: 0.5);
+    font-size: 1.2rem;
+    color: $COLOR_FONT_PRIMARY;
+  }
+}

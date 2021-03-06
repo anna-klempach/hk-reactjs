@@ -1,0 +1,9 @@
+@import "../../styles/theme.scss";
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: $COLOR_INPUT_BACKGROUND;
+}

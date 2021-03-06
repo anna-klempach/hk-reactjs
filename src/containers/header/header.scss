@@ -1,0 +1,7 @@
+@import "../../styles/theme.scss";
+
+.header {
+  background: url("../../assets/images/header.jpg");
+  background-size: cover;
+  border-bottom: 0.7rem solid $COLOR_FONT_SECONDARY;
+}
