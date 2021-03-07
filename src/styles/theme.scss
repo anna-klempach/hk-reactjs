@@ -43,6 +43,7 @@ h1 {
 }
 
 .button-primary {
+  @extend button;
   width: 12rem;
   height: 3rem;
   background-color: $COLOR_HIGHLIGHT;
@@ -51,11 +52,41 @@ h1 {
 
   &:hover {
     background-color: color.scale($COLOR_HIGHLIGHT, $lightness: 10%);
-    cursor: pointer;
   }
 }
 
 .button-secondary {
+  width: 12rem;
+  height: 3rem;
   border: 1px solid $COLOR_HIGHLIGHT;
   color: $COLOR_HIGHLIGHT;
+  background-color: $COLOR_BACKGROUND;
+  &:hover {
+    background-color: color.scale($COLOR_BACKGROUND, $lightness: 10%);
+  }
 }
+
+.custom_input {
+  height: 3rem;
+  border-radius: 5px;
+  border: none;
+  padding: 1rem;
+  background-color: color.change($COLOR_INPUT_BACKGROUND, $alpha: 0.5);
+  font-size: 1.2rem;
+  color: $COLOR_FONT_PRIMARY;
+  text-overflow: ellipsis;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .app-container__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+  }
+}
+
