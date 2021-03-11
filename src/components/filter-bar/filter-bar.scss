@@ -40,27 +40,29 @@
 
     .filter-tab__sort_btn {
       font-weight: 500;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
       border: none;
       border-radius: 2px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
       padding: 0 0.2rem;
+      width: 9rem;
 
       &:hover {
         cursor: pointer;
         .filter-tab__sort_direction_desc {
           border-top: 10px solid $COLOR_BACKGROUND;
         }
-
+    
         .filter-tab__sort_direction_asc {
           border-bottom: 10px solid $COLOR_BACKGROUND;
         }
+    
       }
     }
+
+    .filter-tab__sort_direction {
+      width: auto;
+    }
+
+    
     .filter-tab__sort_direction_desc,
     .filter-tab__sort_direction_asc {
       width: 0;
@@ -91,5 +93,30 @@
       border: 1px solid $COLOR_FONT_SECONDARY;
       z-index: 100;
     }
+  }
+
+  .MuiFormControl-marginNormal {
+    margin: 0.5rem 0 1rem;
+    background-color: color.change($COLOR_INPUT_BACKGROUND, $alpha: 0.5);
+    color: $COLOR_FONT_PRIMARY;
+    border-radius: 5px;
+    padding: 0.42rem 1rem;
+  }
+
+  .MuiInputBase-input {
+    color: $COLOR_FONT_PRIMARY;
+  }
+
+  .MuiInput-underline:after,
+  .MuiInput-underline:before {
+    display: none;
+  }
+
+  .MuiSelect-select.MuiSelect-select {
+    padding: 0;
+  }
+
+  svg.MuiSvgIcon-root.MuiSelect-icon {
+    display: none;
   }
 }

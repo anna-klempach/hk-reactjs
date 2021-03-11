@@ -1,5 +1,5 @@
 import { MovieGenreEnum } from '../models/enums/movie-genre';
-import { Movie } from '../models/interfaces/movie';
+import { Movie } from '../models/movie';
 
 export const MOVIES: Movie[] = [
   {

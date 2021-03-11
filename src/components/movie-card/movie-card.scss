@@ -10,6 +10,10 @@
   flex-direction: column;
   color: $COLOR_FONT_SECONDARY;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .menu-button {
     position: absolute;
     display: none;
@@ -55,17 +59,11 @@
       justify-content: space-around;
       align-items: center;
       padding: 0.3rem;
+      color: $COLOR_FONT_PRIMARY;
 
       &:hover {
         background-color: color.scale($COLOR_BACKGROUND, $lightness: 30%);
         cursor: pointer;
-      }
-
-      &__dot {
-        background-color: $COLOR_FONT_PRIMARY;
-        width: 0.3rem;
-        height: 0.3rem;
-        border-radius: 50%;
       }
     }
   }
@@ -84,9 +82,9 @@
 
     &__close {
       align-self: flex-end;
-      width: 1.5rem;
-      height: 1.5rem;
-      font-weight: bold;
+      width: 1.45rem;
+      height: 1.45rem;
+      padding: 0.1rem;
     }
   }
 }
