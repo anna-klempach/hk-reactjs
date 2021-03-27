@@ -1,13 +1,14 @@
 /* eslint-disable no-shadow */
 export enum SortingFieldsEnum {
-  genre = 'Genre',
-  rating = 'Rating',
-  releaseDate = 'Release Date'
+  title = 'title',
+  rating = 'vote_average',
+  releaseDate = 'release_date'
 }
 
 export interface Sorter {
   key: string,
-  name: SortingFieldsEnum
+  name: string,
+  label: string
 }
 
 export interface SorterList {
@@ -32,8 +33,8 @@ export interface FilterList {
 }
 
 export enum SortingDirectionEnum {
-  desc = -1,
-  asc = 1
+  desc = 'desc',
+  asc = 'asc'
 }
 
 export const FILTER_FIELDS: FilterList = {
@@ -60,17 +61,20 @@ export const FILTER_FIELDS: FilterList = {
 };
 
 export const SORTING_FIELDS: SorterList = {
-  [SortingFieldsEnum.genre]: {
+  [SortingFieldsEnum.title]: {
     key: 'sortingField0',
-    name: SortingFieldsEnum.genre
+    name: SortingFieldsEnum.title,
+    label: SortingFieldsEnum.title
   },
   [SortingFieldsEnum.rating]: {
     key: 'sortingField1',
-    name: SortingFieldsEnum.rating
+    name: SortingFieldsEnum.rating,
+    label: 'rating'
   },
   [SortingFieldsEnum.releaseDate]: {
     key: 'sortingField2',
-    name: SortingFieldsEnum.releaseDate
+    name: SortingFieldsEnum.releaseDate,
+    label: 'release date'
   }
 };
 

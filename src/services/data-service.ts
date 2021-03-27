@@ -34,38 +34,4 @@ export const deleteMovie = (id: number): void => {
   ];
 };
 
-export const filterMovies = (filter: MoviesFilter): Movie[] =>
-  DATA_MOVIES
-    .filter(
-      movie => (!filter.searchValue || movie.title?.toLowerCase().includes(filter.searchValue.toLowerCase()))
-        && (!filter.filterField || filter.filterField === FilterFieldEnum.all || movie.genres.includes(filter.filterField))
-    )
-    .sort(
-      (prev, curr) => {
-        if (filter.sortField === SortingFieldsEnum.rating) {
-          return filter.sortingDirection === SortingDirectionEnum.asc
-            ? prev.vote_average - curr.vote_average
-            : curr.vote_average - prev.vote_average;
-        }
-        if (filter.sortField === SortingFieldsEnum.genre) {
-          const prevGenres = Array.isArray(prev.genres) && prev.genres.sort().join('');
-          const currGenres = Array.isArray(curr.genres) && curr.genres.sort().join('');
-          if (prevGenres > currGenres) {
-            return filter.sortingDirection;
-          }
-          if (prevGenres < currGenres) {
-            return -filter.sortingDirection;
-          }
-        }
-        if (filter.sortField === SortingFieldsEnum.releaseDate) {
-          const prevDate = new Date(prev.release_date).getTime();
-          const currDate = new Date(curr.release_date).getTime();
-          return filter.sortingDirection === SortingDirectionEnum.asc
-            ? prevDate - currDate
-            : currDate - prevDate;
-        }
-        return 0;
-      }
-    );
-
 export const getMovieCardById = (id: number): Movie => DATA_MOVIES.find(movie => movie.id === id);
