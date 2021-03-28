@@ -3,25 +3,25 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Movie } from '../../models/movie';
 import Logo from '../logo/logo';
 import './movie-info-header.scss';
+import { Action } from '../../redux/actions';
 
 const DEFAULT_SRC = '../../assets/images/no-image.png';
 
 interface MovieInfoHeaderProps {
   movie: Movie,
-  onSearchClick: () => void
+  onSearchClick: () => Action
 }
 
 const MovieInfoHeader: React.FunctionComponent<MovieInfoHeaderProps> = ({ movie, onSearchClick }: MovieInfoHeaderProps): React.ReactElement => {
-  const handleSearchClick = () => onSearchClick();
   const addDefaultSrc = (event: React.BaseSyntheticEvent) => {
     event.target.src = DEFAULT_SRC;
   };
 
-  return (
+  return movie &&
     <div className="movie-info-header">
       <div className="movie-info-header__top">
         <Logo />
-        <button className="search-button" onClick={() => handleSearchClick()}>
+        <button className="search-button" onClick={onSearchClick}>
           <SearchIcon className="search-button__icon" />
         </button>
       </div>
@@ -44,8 +44,7 @@ const MovieInfoHeader: React.FunctionComponent<MovieInfoHeaderProps> = ({ movie,
         </div>
       </div>
 
-    </div>
-  );
+    </div>;
 };
 
 export default MovieInfoHeader;

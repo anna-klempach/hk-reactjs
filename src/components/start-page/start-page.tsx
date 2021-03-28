@@ -1,26 +1,19 @@
 import * as React from 'react';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import SearchHeader from '../search-header/search-header';
 import Main from '../main/main';
 import ErrorBoundary from '../error-boundary/error-boundary';
-import { FilterFieldEnum, MoviesFilter, SortingDirectionEnum, SortingFieldsEnum } from '../../models/enums/movies-list';
+import { SortingDirectionEnum, SortingFieldsEnum } from '../../models/enums/movies-list';
 import { Movie, MovieQueryParams } from '../../models/movie';
-import * as DataService from '../../services/data-service';
 import SearchPanel from '../search-panel/search-panel';
 import MoviesList from '../movies-list/movies-list';
-import MovieInfoHeader from '../movie-info-header/movie-info-header';
-import useFetch from '../../hooks/use-fetch';
 import FilterBar from '../filter-bar/filter-bar';
+import { addMovieThunk } from '../../redux/thunk';
 
-export interface StartPageProps {
-  onClickMovieCard: (id: number) => void
-}
-
-const StartPage = ({ onClickMovieCard }: StartPageProps): React.ReactElement => {
-  
+const StartPage = (): React.ReactElement => {
+  const dispatch = useDispatch();
   const [movieQueryParams, setMovieQueryParams] = React.useState<MovieQueryParams>({
     sortBy: SortingFieldsEnum.rating,
     sortOrder: SortingDirectionEnum.desc,
@@ -50,7 +43,7 @@ const StartPage = ({ onClickMovieCard }: StartPageProps): React.ReactElement => 
   };
 
   const handleAddMovie = (movieRecord: Movie): void => {
-    // Implement with redux
+    dispatch(addMovieThunk(movieRecord));
   };
 
   return (
@@ -64,7 +57,7 @@ const StartPage = ({ onClickMovieCard }: StartPageProps): React.ReactElement => 
           </Header>
           <Main>
             <FilterBar filter={movieQueryParams} onFilterChange={handleFilterChange} />
-            <MoviesList movieQueryParams={movieQueryParams} onMovieCardClick={onClickMovieCard} />
+            <MoviesList movieQueryParams={movieQueryParams} />
           </Main>
         </div>
       </ErrorBoundary>
