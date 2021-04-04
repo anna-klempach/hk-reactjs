@@ -61,6 +61,7 @@ h1 {
   border: 1px solid $COLOR_HIGHLIGHT;
   color: $COLOR_HIGHLIGHT;
   background-color: $COLOR_BACKGROUND;
+  font-size: 1.3rem;
   &:hover {
     background-color: color.scale($COLOR_BACKGROUND, $lightness: 10%);
   }
@@ -90,3 +91,35 @@ h1 {
   }
 }
 
+.button-invalid {
+  background-color: $COLOR_FONT_SECONDARY;
+  &:hover {
+    background-color: $COLOR_FONT_SECONDARY;
+    cursor: default;
+  }
+}
+
+.validation-error-diplay {
+  color: color.scale($COLOR_HIGHLIGHT, $lightness: 20%);
+  margin: 0.3rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.form-label {
+  color: $COLOR_HIGHLIGHT;
+}
+
+.form-input {
+  @extend .custom_input !optional;
+  margin: 0.3rem 0 1rem;
+
+  &.disabled {
+    margin: 0;
+    background-color: $COLOR_BACKGROUND;
+  }
+
+  &.invalid-field {
+    border: 1px solid color.scale($COLOR_HIGHLIGHT, $lightness: 20%);
+    margin-bottom: 0;
+  }
+}

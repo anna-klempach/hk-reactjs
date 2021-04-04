@@ -5,6 +5,7 @@ import Modal from '../modal/modal';
 import MovieDetailsForm from '../movie-details-form/movie-details-form';
 import {Movie, MovieRecord} from '../../models/movie';
 import useToggle from '../../hooks/use-toggle';
+import { InitialMovieRecord, InitialMovieValues } from '../../models/initial-movie-record';
 
 export interface SearchHeaderProps {
   children: React.ReactNode,
@@ -20,12 +21,12 @@ function SearchHeader(props: SearchHeaderProps): React.ReactElement {
   }
 
   const handleAddClick = (): void => {
-    setMovie(new MovieRecord());
+    setMovie(new InitialMovieRecord());
     toggleIsModalVisible();
   }
 
-  const handleFormSubmit = (movieRecord: Movie): void => {
-    props.onAddMovie(movieRecord);
+  const handleFormSubmit = (movieRecord: InitialMovieValues): void => {
+    props.onAddMovie(new MovieRecord(movieRecord));
     toggleIsModalVisible();
   }
 
