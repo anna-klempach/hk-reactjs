@@ -15,7 +15,7 @@ export const getMovieThunk = (id: number) => async (dispatch: Dispatch): Promise
   catch (error) {
     dispatch(setAlert({
       type: AlertTypesEnum.error,
-      message: error
+      message: error.toString()
     }))
   }
   // This timeout has no practical sense, just removes the loader after view is refreshed
@@ -35,7 +35,7 @@ export const addMovieThunk = (movieRecord: Movie) => async (dispatch: Dispatch):
   catch (error) {
     dispatch(setAlert({
       type: AlertTypesEnum.error,
-      message: error
+      message: error.toString()
     }))
   }
   setTimeout(() => dispatch(setLoading(false)), 1000);
@@ -50,7 +50,7 @@ export const getMoviesThunk = (queryParams: MovieQueryParams) => async (dispatch
   catch (error) {
     dispatch(setAlert({
       type: AlertTypesEnum.error,
-      message: error
+      message: error.toString()
     }))
   }
   setTimeout(() => dispatch(setLoading(false)), 1000);
@@ -61,9 +61,8 @@ export const updateMovieThunk = (movieRecord: Movie, movieQueryParams: MovieQuer
     return;
   }
   // Tagline is a required field, but in some movies it's not present
-  // TODO: Add tagline field in movie form on edit
   if (!movieRecord.tagline) {
-    movieRecord.tagline = 'Cool tagline';
+    movieRecord.tagline = 'Tagline is not defined';
   }
   dispatch(setLoading(true));
   try {
@@ -78,7 +77,7 @@ export const updateMovieThunk = (movieRecord: Movie, movieQueryParams: MovieQuer
   catch (error) {
     dispatch(setAlert({
       type: AlertTypesEnum.error,
-      message: error
+      message: error.toString()
     }))
   }
   setTimeout(() => dispatch(setLoading(false)), 1000);
@@ -97,7 +96,7 @@ export const deleteMovieThunk = (id: number, movieQueryParams: MovieQueryParams)
   catch (error) {
     dispatch(setAlert({
       type: AlertTypesEnum.error,
-      message: error
+      message: error.toString()
     }))
   }
   setTimeout(() => dispatch(setLoading(false)), 1000);

@@ -6,28 +6,15 @@
     flex-direction: column;
     height: 100%;
     width: 35rem;
-    font-weight: 1.2rem;
+    font-size: 1.2rem;
 
     .movie-details__form {
         display: flex;
         flex-direction: column;
         margin-top: 1.2rem;
 
-        textarea.movie-details__form_input {
+        textarea.form-input {
             height: auto;
-        }
-        .movie-details__form_input {
-            @extend .custom_input !optional;
-            margin: 0.3rem 0 1rem;
-
-            &.disabled {
-                margin: 0;
-                background-color: $COLOR_BACKGROUND;
-            }
-        }
-
-        .movie-details__form_label {
-            color: $COLOR_HIGHLIGHT;
         }
 
         .MuiFormControl-marginNormal {
@@ -36,6 +23,11 @@
             color: $COLOR_FONT_PRIMARY;
             border-radius: 5px;
             padding: 0.42rem 1rem;
+
+            &.invalid-field {
+                border: 1px solid color.scale($COLOR_HIGHLIGHT, $lightness: 20%);
+                margin-bottom: 0;
+            }
         }
 
         .MuiInputBase-input {
