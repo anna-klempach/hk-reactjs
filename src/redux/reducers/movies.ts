@@ -4,12 +4,14 @@ import { Action } from '../actions';
 
 export interface MoviesState {
     items: Array<Movie>,
-    selectedMovie: Movie
+    selectedMovie: Movie,
+    notFound: boolean
 }
 
 const initialState: MoviesState = {
     items: [],
-    selectedMovie: null
+    selectedMovie: null,
+    notFound: false
 };
 
 export default function moviesReducer(state: MoviesState = initialState, action: Action): MoviesState {
@@ -18,6 +20,12 @@ export default function moviesReducer(state: MoviesState = initialState, action:
             return {
                 ...state,
                 selectedMovie: action.payload.movie
+            }
+        }
+        case ActionTypes.SET_MOVIE_NOT_FOUND: {
+            return {
+                ...state,
+                notFound: action.payload.notFound
             }
         }
         case ActionTypes.SET_MOVIES: {
