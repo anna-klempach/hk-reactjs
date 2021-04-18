@@ -11,12 +11,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Input, TextareaAutosize } from '@material-ui/core';
-import { useState } from 'react';
 import { Formik, FormikProps, Form } from 'formik';
 import * as Yup from 'yup';
 import { MOVIE_GENRES_LIST } from '../../models/enums/movie-genre';
-import { Movie } from '../../models/movie';
-import { InitialMovieRecord, InitialMovieValues } from '../../models/initial-movie-record';
+import { InitialMovieValues } from '../../models/initial-movie-record';
 import { InputTextField } from '../input-text-field/input-text-field';
 
 const ITEM_HEIGHT = 48;
@@ -97,6 +95,7 @@ const MovieDetailsForm: React.FunctionComponent<MovieDetailsFormProps> = (props:
               margin="normal"
               id="date-picker-inline"
               value={values.release_date}
+              aria-label="RELEASE DATE"
               onChange={e => handleChange({target: {
                 value: e,
                 name: 'release_date'
@@ -140,7 +139,7 @@ const MovieDetailsForm: React.FunctionComponent<MovieDetailsFormProps> = (props:
               return selected.join(', ');
             }}
             MenuProps={MenuProps}
-            inputProps={{ 'aria-label': 'Without label' }}>
+            inputProps={{ 'aria-label': 'GENRES' }}>
             {MOVIE_GENRES_LIST.map(genre =>
               <MenuItem key={genre} value={genre}>
                 <Checkbox checked={values.genres.indexOf(genre) > -1} />
@@ -155,6 +154,7 @@ const MovieDetailsForm: React.FunctionComponent<MovieDetailsFormProps> = (props:
             className={`form-input ${errors.overview && touched.overview ? ' invalid-field' : ''}`}
             name="overview"
             value={values.overview}
+            aria-label="OVERVIEW"
             placeholder="Overview here"
             onChange={e => {
               setFieldTouched('overview', true);
@@ -174,8 +174,8 @@ const MovieDetailsForm: React.FunctionComponent<MovieDetailsFormProps> = (props:
             />
 
           <div className="movie-details__btns">
-            <button className="button-secondary" type="reset" onClick={handleReset}>RESET</button>
-            <button className={`button-primary${!isValid ? ' button-invalid' : ''}`} type="submit">SUBMIT</button>
+            <button className="button-secondary" type="reset" onClick={handleReset} name="reset">RESET</button>
+            <button className={`button-primary${!isValid ? ' button-invalid' : ''}`} type="submit" name="submit">SUBMIT</button>
           </div>
         </Form>}
       </Formik>

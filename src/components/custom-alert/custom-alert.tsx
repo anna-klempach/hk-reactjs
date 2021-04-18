@@ -5,7 +5,7 @@ import { selectAlertMessage, selectAlertType } from '../../redux/selectors';
 import { setAlert } from '../../redux/actions';
 import './custom-alert.scss';
 
-export const CustomAlert = (): React.ReactElement => {
+const CustomAlert = (): React.ReactElement => {
   const alertMessage = useSelector(selectAlertMessage);
   const alertType = useSelector(selectAlertType);
   const dispatch = useDispatch();
@@ -23,4 +23,6 @@ export const CustomAlert = (): React.ReactElement => {
       {alertMessage}
     </Alert>
     : null)
-}
+};
+
+export default CustomAlert;

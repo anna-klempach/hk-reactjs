@@ -1,5 +1,5 @@
 import { Movie } from '../models/movie';
-import { MovieQueryParams, MovieQueryParamsDict } from '../models/movie-query-params';
+import { MovieQueryParamsDict } from '../models/movie-query-params';
 import { addMovie, deleteMovie, getMovie, getMovies, updateMovie } from '../services/data-service';
 import { Action, setAlert, setLoading, setMovie, setMovieNotFound, setMovies } from './actions';
 import { AlertTypesEnum } from './reducers/alert';

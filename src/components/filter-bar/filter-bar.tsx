@@ -17,9 +17,9 @@ const FilterBar: React.FunctionComponent<FilterBarProps> = (props: FilterBarProp
   const filter = useSelector(selectFilterParam);
   const sortOrder = useSelector(selectSortOrderParam) || SortingDirectionEnum.desc;
   const defaultSortBy = props.notEmpty ? SortingFieldsEnum.rating : '';
-  const filterKey = filter && FILTER_FIELDS[filter] && FILTER_FIELDS[filter].key || props.notEmpty ? FILTER_FIELDS[FilterFieldEnum.all].key : '';
-  const [activeTabId, setActiveTabId] = useState(filterKey || '');
-  const [sortDirection, setSortDirection] = useState(sortOrder);
+  const filterKey = filter && FILTER_FIELDS[filter] && FILTER_FIELDS[filter].key || (props.notEmpty ? FILTER_FIELDS[FilterFieldEnum.all].key : '');
+  const [sortDirection, setSortDirection] = React.useState(sortOrder);
+  const [activeTabId, setActiveTabId] = React.useState(filterKey || '');
 
   const onClickFilterItem = (event: React.BaseSyntheticEvent): void => {
     const { target } = event;
@@ -35,7 +35,7 @@ const FilterBar: React.FunctionComponent<FilterBarProps> = (props: FilterBarProp
   };
 
   const onClickToggleSortDirection = (): void => {
-    setSortDirection(prevSortDirection => prevSortDirection === SortingDirectionEnum.asc
+    setSortDirection(sortOrder === SortingDirectionEnum.asc
       ? SortingDirectionEnum.desc
       : SortingDirectionEnum.asc
     );
@@ -87,8 +87,8 @@ const FilterBar: React.FunctionComponent<FilterBarProps> = (props: FilterBarProp
             </MenuItem>
           )}
         </Select>
-        <button className="filter-tab__sort_btn button-dark filter-tab__sort_direction" onClick={onClickToggleSortDirection}>
-          <div className={`filter-tab__sort_direction_${sortOrder}`} />
+        <button aria-label="SORT ORDER" className="filter-tab__sort_btn button-dark filter-tab__sort_direction" onClick={onClickToggleSortDirection}>
+          <div className={`filter-tab__sort_direction_${sortOrder}`} data-testid="sortOrderIcon" />
         </button>
       </div>
     </div >
