@@ -9,8 +9,9 @@ import Modal from '../modal/modal';
 import MovieDetailsForm from '../movie-details-form/movie-details-form';
 import DeleteMovieConfirm from '../delete-movie-confirm/delete-movie-confirm';
 import useToggle from '../../hooks/use-toggle';
-import { getMovieThunk } from '../../redux/thunk';
 import { InitialMovieRecord, InitialMovieValues } from '../../models/initial-movie-record';
+import useRouter from '../../hooks/use-router';
+import { setQueryParams } from '../../redux/actions';
 
 
 export interface MovieCardProps {
@@ -27,6 +28,8 @@ const MovieCard: React.FunctionComponent<MovieCardProps> = (props: MovieCardProp
   const [isMenuVisible, toggleIsMenuVisible] = useToggle();
   const [isModalVisible, toggleIsModalVisible] = useToggle();
   const [shouldDeleteMovie, setShouldDeleteMovie] = useState(false);
+  
+  const router = useRouter();
 
   const onClickMenuBtn = (e: React.SyntheticEvent): void => {
     toggleIsMenuVisible();
@@ -69,7 +72,8 @@ const MovieCard: React.FunctionComponent<MovieCardProps> = (props: MovieCardProp
     if (isModalVisible || target.id === 'menu-button') {
       return;
     }
-    dispatch(getMovieThunk(movie.id));
+    dispatch(setQueryParams(null));
+    router.push(`/film/${movie.id}`);
   }
 
   const addDefaultSrc = (event: React.BaseSyntheticEvent): void => {

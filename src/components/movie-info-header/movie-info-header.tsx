@@ -3,13 +3,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Movie } from '../../models/movie';
 import Logo from '../logo/logo';
 import './movie-info-header.scss';
-import { Action } from '../../redux/actions';
 
 const DEFAULT_SRC = '../../assets/images/no-image.png';
 
 interface MovieInfoHeaderProps {
   movie: Movie,
-  onSearchClick: () => Action
+  onSearchClick: () => void
 }
 
 const MovieInfoHeader: React.FunctionComponent<MovieInfoHeaderProps> = ({ movie, onSearchClick }: MovieInfoHeaderProps): React.ReactElement => {

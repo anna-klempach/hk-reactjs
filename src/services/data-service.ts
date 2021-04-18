@@ -1,10 +1,11 @@
-import { Movie, MovieQueryParams } from '../models/movie';
+import { Movie } from '../models/movie';
+import { MovieQueryParamsDict } from '../models/movie-query-params';
 
 const BASE_ROUTE = 'http://localhost:4000/movies';
 
-export const getMovies = async (queryParams: MovieQueryParams): Promise<Movie[]> => {
+export const getMovies = async (queryParams: MovieQueryParamsDict): Promise<Movie[]> => {
   try {
-    const response = await fetch(`${BASE_ROUTE}?${new URLSearchParams(queryParams)}`, {
+    const response = await fetch(`${BASE_ROUTE}?${MovieQueryParamsDict.toQueryString(queryParams)}`, {
       method: 'GET'
     });
     const rawData: { data: Movie[] } = await response.json();

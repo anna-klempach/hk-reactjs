@@ -45,16 +45,20 @@
       padding: 0 0.2rem;
       width: 9rem;
 
+      &.button-dark, .button-dark {
+        font-size: 1.1rem;
+        padding-top: 3px;
+      }
+
       &:hover {
         cursor: pointer;
         .filter-tab__sort_direction_desc {
           border-top: 10px solid $COLOR_BACKGROUND;
         }
-    
+
         .filter-tab__sort_direction_asc {
           border-bottom: 10px solid $COLOR_BACKGROUND;
         }
-    
       }
     }
 
@@ -62,7 +66,6 @@
       width: auto;
     }
 
-    
     .filter-tab__sort_direction_desc,
     .filter-tab__sort_direction_asc {
       width: 0;

@@ -9,7 +9,8 @@ module.exports = {
   target: 'web',
   output: {
     filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js'
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/'
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -17,7 +18,8 @@ module.exports = {
   },
   devServer: {
     compress: true,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   optimization: {
     splitChunks: {

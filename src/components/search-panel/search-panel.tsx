@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { MoviesFilter } from '../../models/enums/movies-list';
 import './search-panel.scss';
 
 export interface SearchPanelProps {
-  onSearchValueChange: (filter: MoviesFilter | string) => void
+  initialValue: string,
+  onSearchValueChange: (param: string) => void
 }
 
 function SearchPanel(props: SearchPanelProps): React.ReactElement {
-  let searchValue = '';
+  let searchValue = props.initialValue || '';
 
   const handleSearchValueChange = (e: React.BaseSyntheticEvent): void => {
     const { target } = e;
@@ -31,7 +31,7 @@ function SearchPanel(props: SearchPanelProps): React.ReactElement {
       <input
         type="text"
         className="search-panel__input"
-        defaultValue=""
+        defaultValue={searchValue}
         placeholder="What do you want to watch?"
         onChange={e => handleSearchValueChange(e)}
         onKeyPress={e => handleSearchKeyPress(e)}
