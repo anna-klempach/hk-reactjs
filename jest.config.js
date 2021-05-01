@@ -3,10 +3,18 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/components**/***/*.{js,jsx,ts,tsx}",
-    "src/containers**/***/*.{js,jsx,ts,tsx}",
+    "src/redux**/***/***/*.{js,jsx,ts,tsx}",
+    "src/redux**/***/*.{js,jsx,ts,tsx}",
+    "src/redux**/*.{js,jsx,ts,tsx}",
     "!**/node_modules/**",
     "!**/dev/**",
-    "!**/build/**"
+    "!**/build/**",
+    "!src/redux/action-types.ts",
+    "!src/redux/store.ts",
+    "!**/index.ts"
   ],
-  resetMocks: true
+  resetMocks: true,
+  moduleNameMapper: {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy" 
+  }
 };

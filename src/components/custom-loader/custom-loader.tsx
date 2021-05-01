@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/selectors';
 import './custom-loader.scss';
 
-export const CustomLoader = (): React.ReactElement => {
+const CustomLoader = (): React.ReactElement => {
   const isLoading = useSelector(selectIsLoading);
   return isLoading
     ? <div className="spinner-container">
@@ -17,4 +17,6 @@ export const CustomLoader = (): React.ReactElement => {
       </div>
     </div>
     : null
-}
+};
+
+export default CustomLoader;

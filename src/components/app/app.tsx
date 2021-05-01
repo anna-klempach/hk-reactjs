@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import MovieDetails from '../movie-details/movie-details';
 import SearchMoviesPage from '../search-movies-page/search-movies-page';
-import { CustomAlert } from '../custom-alert/custom-alert';
-import { CustomLoader } from '../custom-loader/custom-loader';
+import CustomAlert from '../custom-alert/custom-alert';
+import CustomLoader from '../custom-loader/custom-loader';
 import { ErrorPage } from '../error-page/error-page';
 
 const App: React.FunctionComponent<Record<string, unknown>> = () => 
