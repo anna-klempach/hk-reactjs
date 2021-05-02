@@ -4,7 +4,7 @@ import { AlertState } from './reducers/alert';
 import { MovieQueryParams, MovieQueryParamsDict } from '../models/movie-query-params';
 
 export interface Action {
-  type: ActionTypes,
+  type: string,
   payload: any
 }
 

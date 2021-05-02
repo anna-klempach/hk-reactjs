@@ -6,6 +6,7 @@ import App from './components/app/app';
 import configureStore from './redux/configure-store';
 import routes from './routes';
 import { MovieQueryParamsDict } from './models/movie-query-params';
+import { setQueryParams } from './redux/actions';
 
 function renderHTML(html, preloadedState) {
   return `
@@ -32,34 +33,38 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
   return (req, res) => {
-    const queryParams = new MovieQueryParamsDict(req.query);
-    const store = configureStore(queryParams);
+    const store = configureStore();
     const context = {};
-    const renderRoot = () => (
-      <App
-        context={context}
-        location={req.url}
-        Router={StaticRouter}
-        store={store}
-      />
-    );
-    store.runSaga().toPromise().then(() => {
-      const htmlString = renderToString(renderRoot());
-      if (context.url) {
-        res.writeHead(302, {
-          Location: context.url,
-        });
-        res.end();
-        return;
+      const renderRoot = () => (
+        <App
+          context={context}
+          location={req.url}
+          Router={StaticRouter}
+          store={store}
+          />
+      );
+      if (req.query) {
+        const queryParams = new MovieQueryParamsDict(req.query);
+        if (queryParams) {
+          store.dispatch(setQueryParams(queryParams));
+        }
       }
-      const preloadedState = store.getState();
-      res.send(renderHTML(htmlString, preloadedState));
-    });
-
-    // Do first render, starts initial actions.
-    renderToString(renderRoot());
-    // When the first render is finished, send the END action to redux-saga.
-    store.close();
-
+      store.runSaga().done.then(() => {
+        const htmlString = renderToString(renderRoot());
+        if (context.url) {
+          res.writeHead(302, {
+            Location: context.url,
+          });
+          res.end();
+          return;
+        }
+        const preloadedState = store.getState();
+        res.send(renderHTML(htmlString, preloadedState));
+      });
+  
+      // Do first render, starts initial actions.
+      renderToString(renderRoot());
+      // When the first render is finished, send the END action to redux-saga.
+      store.close();
   };
 }

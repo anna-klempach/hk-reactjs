@@ -34,12 +34,9 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         loader: 'awesome-typescript-loader',
-        options: {
-          useCache: true
-        }
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx?)$/,
         loader: 'babel-loader',
       },
       {
