@@ -1,3 +1,4 @@
-module.exports = process.env.NODE_ENV === 'development'
-  ? require('./webpack.dev')
-  : require('./webpack.prod');
+const clientConfig = require('./webpack.client');
+const serverConfig = require('./webpack.server');
+
+module.exports = [clientConfig, serverConfig];

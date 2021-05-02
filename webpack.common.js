@@ -1,25 +1,23 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const webpack = require('webpack');
 
 module.exports = {
-  context: path.join(__dirname, 'src'),
-  entry: './index.tsx',
   target: 'web',
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: 'js/[name].js',
+    path: path.resolve(__dirname, './public'),
     publicPath: '/'
   },
+
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
-  },
-  devServer: {
-    compress: true,
-    open: true,
-    historyApiFallback: true
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+
   },
   optimization: {
     splitChunks: {
@@ -68,14 +66,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
-      filename: 'index.html',
-      title: 'HK ReactJS App'
-    }),
     new MiniCssExtractPlugin({
       filename: './styles.css'
-    }),
-    new CleanWebpackPlugin()
+    })
   ],
 };

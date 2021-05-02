@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
+import { Provider } from 'react-redux';
 import MovieDetails from '../movie-details/movie-details';
 import SearchMoviesPage from '../search-movies-page/search-movies-page';
 import { CustomAlert } from '../custom-alert/custom-alert';
 import { CustomLoader } from '../custom-loader/custom-loader';
-import { ErrorPage } from '../error-page/error-page';
+import ErrorPage from '../error-page/error-page';
+import 'isomorphic-fetch';
+import StartPage from '../start-page/start-page';
 
-const App: React.FunctionComponent<Record<string, unknown>> = () => 
+const App: React.FunctionComponent<any> = ({ Router, location, context, store }) => 
   <>
+  <Provider store={store}>
     <CustomAlert />
     <CustomLoader />
-    <Router>
+    <Router location={location} context={context}>
       <Switch>
         <Route exact path="/">
-          <SearchMoviesPage />
+          <StartPage />
         </Route>
         <Route path="/search">
           <SearchMoviesPage />
@@ -26,6 +31,7 @@ const App: React.FunctionComponent<Record<string, unknown>> = () =>
         </Route>
       </Switch>
     </Router>
+    </Provider>
   </>;
 
-export default App;
+export default hot(module)(App);

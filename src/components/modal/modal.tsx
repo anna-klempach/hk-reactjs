@@ -10,33 +10,16 @@ export interface ModalProps {
   onModalClose: () => void
 }
 
-const MODAL_ROOT = document.getElementById('modal');
-
 export default class Modal extends React.Component<ModalProps, Record<string, never>> {
-  element: HTMLDivElement;
-
-  constructor(props: ModalProps) {
-    super(props);
-    this.element = document.createElement('div');
-    this.element.classList.add('modal-container');
-  }
-
-  componentDidMount(): void {
-    MODAL_ROOT.appendChild(this.element);
-  }
-
-  componentWillUnmount(): void {
-    MODAL_ROOT.removeChild(this.element);
-  }
 
   handleCloseClick = (): void => {
     this.props.onModalClose();
   }
 
-  public render(): React.ReactPortal {
+  public render(): React.ReactNode {
     // eslint-disable-next-line no-extra-parens
-    const modalElement = (
-      <>
+    return (
+      <div className="modal-container">
         <div className="modal-header">
           <Logo />
         </div>
@@ -50,8 +33,7 @@ export default class Modal extends React.Component<ModalProps, Record<string, ne
         </div>
         <div className="spacer" />
         <Footer />
-      </>
+      </div>
     );
-    return createPortal(modalElement, this.element);
   }
 }
